@@ -1,0 +1,4 @@
+# Ansible managed: by fabio on note-fabio
+Defaults:zabbix !requiretty
+root ALL=(ALL) NOPASSWD: ALL
+%wheel ALL=(ALL) NOPASSWD: ALL

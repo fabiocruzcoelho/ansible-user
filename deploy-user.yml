@@ -1,0 +1,43 @@
+---
+- hosts: linux-servers
+  become: true
+  become_user: root
+  gather_facts: false
+  tasks:
+    - name: Criando usuario remoto
+      user:
+       name: remoto
+       comment: Usuario padrao de acesso remoto SSH
+       groups: wheel
+       shell: /bin/bash
+       password: $1$rn9Ymc7F$mklifBH7GuAOWGy06NfUm1
+      tags: user
+
+    - name: Setando chave ssh key
+      authorized_key:
+       user: remoto
+       state: present
+       key: "{{ lookup('file', 'remoto.pub') }}"
+      tags: ssh-key
+
+    - name: Copiando file sudoers
+      copy:
+       src: sudoers
+       dest: /etc/sudoers
+       owner: root
+       group: root
+       mode: 0444
+      tags: sudo
+
+    - name: Padrinozando senha de root
+      user:
+       name: root
+       password: $1$rn9Ymc7F$mklifBH7GuAOWGy06NfUm1
+      tags: user
+
+    - name: Setando chaves ssh key
+      authorized_key:
+       user: root
+       state: present
+       key: "{{ lookup('file', 'ansible.pub') }}"
+      tags: ssh-key
