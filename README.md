@@ -72,7 +72,9 @@ localhost
 ```
 
 ## Executando playbook:
-- O playbook é executado e agendado pelo propio gitlab em modo de ci/cd.
+```yml
+ansible-playbook -i inventory deploy-user.yml -k  -u root
+``` 
 
 ## Autor:
 - [Fabio Coelho](http://gitlab.braspress.com.br/fabiocoelho-sao)
