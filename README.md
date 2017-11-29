@@ -77,4 +77,4 @@ ansible-playbook -i inventory deploy-user.yml -k  -u root
 ``` 
 
 ## Autor:
-- [Fabio Coelho](http://gitlab.braspress.com.br/fabiocoelho-sao)
+- [Fabio Coelho](https://github.com/fcruzcoelho)
